@@ -1,0 +1,15 @@
+version: '3.1'
+services:
+  postgres-mockfood-ms:
+    container_name: ms_pagamentos_pedidos
+    image: postgres:12.2
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      PGDATA: "/data/postgres"
+    volumes:
+      - ./postgres:/data/postgres
+      - ./docker_postgres_init.sql:/docker-entrypoint-initdb.d/docker_postgres_init.sql
+    ports:
+      - "5432:5432"
+    restart: unless-stopped
